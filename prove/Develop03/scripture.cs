@@ -11,17 +11,14 @@ class Scripture
     public Scripture(Reference reference, string text)
     {
         _reference = reference;
-        _words = new List<Word>();
-
-        foreach (string word in text.Split(" "))
-        {
-            _words.Add(new Word(word));
-        }
+        _words = text.Split(' ')
+                     .Select(word => new Word(word))
+                     .ToList();
     }
 
     public void HideRandomWords(int count)
     {
-        List<Word> visibleWords = _words.Where(w => !w.IsHidden()).ToList();
+        var visibleWords = _words.Where(w => !w.IsHidden()).ToList();
 
         for (int i = 0; i < count && visibleWords.Count > 0; i++)
         {
@@ -31,14 +28,14 @@ class Scripture
         }
     }
 
-    public string GetRenderedText()
+    public bool AllWordsHidden()
     {
-        string renderedWords = string.Join(" ", _words.Select(w => w.GetRenderedText()));
-        return $"{_reference.GetDisplayText()}\n{renderedWords}";
+        return _words.All(word => word.IsHidden());
     }
 
-    public bool IsCompletelyHidden()
+    public string GetDisplayText()
     {
-        return _words.All(w => w.IsHidden());
+        string words = string.Join(" ", _words.Select(w => w.GetDisplayText()));
+        return $"{_reference.GetDisplayText()} {words}";
     }
 }
