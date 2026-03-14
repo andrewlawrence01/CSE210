@@ -2,25 +2,20 @@ using System;
 
 public abstract class Goal
 {
-    protected string _shortName;
-    protected string _description;
+    private string _name;
+    private string _description;
     protected int _points;
 
-    public Goal(string shortName, string description, int points)
+    public Goal(string name, string description, int points)
     {
-        _shortName = shortName;
+        _name = name;
         _description = description;
         _points = points;
     }
 
     public string GetName()
     {
-        return _shortName;
-    }
-
-    public string GetDescription()
-    {
-        return _description;
+        return _name;
     }
 
     public int GetPoints()
@@ -34,5 +29,5 @@ public abstract class Goal
 
     public abstract string GetDetailsString();
 
-    public abstract string GetStringRep();
+    public abstract string GetStringRepresentation();
 }

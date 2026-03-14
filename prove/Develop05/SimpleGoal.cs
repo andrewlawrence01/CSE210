@@ -17,7 +17,6 @@ public class SimpleGoal : Goal
             _isComplete = true;
             return _points;
         }
-
         return 0;
     }
 
@@ -29,11 +28,11 @@ public class SimpleGoal : Goal
     public override string GetDetailsString()
     {
         string status = _isComplete ? "[X]" : "[ ]";
-        return $"{status} {_shortName} ({_description})";
+        return $"{status} {GetName()}";
     }
 
-    public override string GetStringRep()
+    public override string GetStringRepresentation()
     {
-        return $"SimpleGoal:{_shortName},{_description},{_points},{_isComplete}";
+        return $"SimpleGoal:{GetName()},{_points},{_isComplete}";
     }
 }
