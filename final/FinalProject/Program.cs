@@ -1,9 +1,13 @@
 using System;
 
-class Program
+namespace StoryBuilder
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello FinalProject World!");
+        static void Main(string[] args)
+        {
+            StoryManager manager = new StoryManager();
+            manager.StartProgram();
+        }
     }
 }
